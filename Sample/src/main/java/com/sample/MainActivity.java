@@ -20,6 +20,7 @@ import android.text.TextPaint;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ImageSpan;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -219,6 +220,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         mDanmakuView = (IDanmakuView) findViewById(R.id.sv_danmaku);
         mContext = DanmakuContext.create();
+        Display display = getWindowManager().getDefaultDisplay();
+        float refreshRate = display.getRefreshRate();
+        int rate = (int) (1000 / refreshRate);
+        mContext.setFrameUpdateRate(rate);
+
         mContext.setDanmakuStyle(IDisplayer.DANMAKU_STYLE_STROKEN, 3).setDuplicateMergingEnabled(false).setScrollSpeedFactor(1.2f).setScaleTextSize(1.2f)
         .setCacheStuffer(new SpannedCacheStuffer(), mCacheStufferAdapter) // 图文混排使用SpannedCacheStuffer
 //        .setCacheStuffer(new BackgroundCacheStuffer())  // 绘制背景使用BackgroundCacheStuffer

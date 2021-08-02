@@ -108,6 +108,16 @@ public class DanmakuContext implements Cloneable {
 
     private IDanmakus.BaseComparator mBaseComparator;
 
+    private int mUpdateRate = 16;
+
+    public int getFrameUpdateRate(){
+        return mUpdateRate;
+    }
+
+    public void setFrameUpdateRate(int rate){
+        mUpdateRate = rate;
+    }
+
     public IDanmakus.BaseComparator getBaseComparator() {
         return mBaseComparator;
     }

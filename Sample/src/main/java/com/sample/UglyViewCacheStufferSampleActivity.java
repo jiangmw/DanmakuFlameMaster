@@ -20,6 +20,7 @@ import android.text.style.BackgroundColorSpan;
 import android.text.style.ImageSpan;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Display;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -309,6 +310,10 @@ public class UglyViewCacheStufferSampleActivity extends Activity implements View
 
         mDanmakuView = (IDanmakuView) findViewById(R.id.sv_danmaku);
         mContext = DanmakuContext.create();
+        Display display = getWindowManager().getDefaultDisplay();
+        float refreshRate = display.getRefreshRate();
+        int rate = (int) (1000 / refreshRate);
+        mContext.setFrameUpdateRate(rate);
 
         mIconWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30f, getResources().getDisplayMetrics());
         mContext.setDanmakuBold(true);
